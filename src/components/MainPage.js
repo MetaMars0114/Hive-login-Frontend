@@ -1,20 +1,18 @@
 import React from 'react';
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
-import {} from "../actions/actions"
+import { } from "../actions/actions"
 import Login from "./Login";
 import Settings from "./Settings";
-import {login} from "../actions/actions";
-import {fetchLogin} from "../actions/actions";
+import { login } from "../actions/actions";
+import { fetchLogin } from "../actions/actions";
 const queryString = require('query-string');
 
 
-class MainPage extends React.Component
-{
+class MainPage extends React.Component {
 
-    login_refresh = (event) =>
-    {
-        if (event.origin !== "http://localhost:4002"  && event.origin !== "https://back.downvotecontrol.com")
+    login_refresh = (event) => {
+        if (event.origin !== "http://localhost:4002" && event.origin !== "https://back.downvotecontrol.com")
             return;
 
         let data = {};
@@ -39,12 +37,11 @@ class MainPage extends React.Component
         if (this.props.logged_user === "") {
 
             return (
-                <Login/>
+                <Login />
             )
-        } else
-        {
+        } else {
             return (
-                <Settings/>
+                <Settings />
             )
         }
     }
@@ -53,8 +50,8 @@ class MainPage extends React.Component
 
 const mapStateToProps = (state) => {
     return {
-        logged_user : state.user,
+        logged_user: state.user,
     };
 };
 
-export default connect(mapStateToProps, {login, fetchLogin})(MainPage);
+export default connect(mapStateToProps, { login, fetchLogin })(MainPage);

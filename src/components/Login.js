@@ -15,6 +15,8 @@ class LoginParking extends React.Component {
 
     display_login_keychain = () => {
 
+        console.log('props.logged_user', this.props.logged_user)
+
         if (window.hive_keychain) {
 
             let keychain = window.hive_keychain
@@ -30,12 +32,10 @@ class LoginParking extends React.Component {
 
 
     send_login_token = async () => {
-        console.log('send_login_token');
 
         let keychain = window.hive_keychain;
-
-
         let memo = (await backend.post('/auth/keychain/fetch_memo', { username: this.state.username })).data;
+
         console.log('memo', memo);
 
         if (memo.status === "ok") {
@@ -63,7 +63,6 @@ class LoginParking extends React.Component {
 
                 let auth = data[0].posting.account_auths.filter(el => el[0] === "downvote-tool");
                 console.log('auth in login_keychain', auth);
-
 
                 if (auth.length === 0) {
 
@@ -160,7 +159,7 @@ class LoginParking extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        logged_user: state.login
+        logged_user: state.user
     };
 };
 
